@@ -1,4 +1,4 @@
-import Product from "../models/product.modal";
+import Product from "../models/product.modal.js";
 
 export const getCartProducts = async (req, res) => {
     try {
