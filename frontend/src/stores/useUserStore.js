@@ -39,12 +39,22 @@ export const useUserStore = create((set) => ({
         }
     },
 
+    logout: async()=>{
+        try {
+			await axios.post("api/auth/logout");
+			set({ user: null });
+		} catch (error) {
+			toast.error(error.response?.data?.message || "An error occurred during logout");
+		}
+    },
+
     checkAuth: async() =>{
         set({checkingAuth: true});
         try {
-            const res = axios.get("api/auth/profile");
+            const res = await axios.get("api/auth/profile");
             set({user: res.data, checkingAuth: false})
-            console.log(res.data);
+            console.log("response from cehckauth:", res.data);
+            
         } catch (error) {
             set({checkingAuth: false, user: null})
             toast.error(error.response.data.message || "An error occurred");

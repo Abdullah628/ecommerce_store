@@ -23,7 +23,7 @@ export const protectRoute = async (req, res, next) => {
           .json({ message: "Unauthorized: User not found" });
       }
 
-      res.user = user;
+      req.user = user;
       next();
     } catch (error) {
         if(error.name === "TokenExpiredError"){
