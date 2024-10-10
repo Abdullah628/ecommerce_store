@@ -5,8 +5,8 @@ export const getCartProducts = async (req, res) => {
         const products = await Product.find({_id: {$in: req.user.cartItems}});
 
         // add quantity for each product
-        const cartItems = products.map(product => {
-            const item = req.user.cartItems.find(cartItems => cartItems.id === product._id);
+        const cartItems = products.map((product) => {
+            const item = req.user.cartItems.find((cartItem) => cartItem.id === product.id);
             return {...product.toJSON(), quantity: item.quantity};
         });
         res.json({cartItems});
@@ -19,9 +19,12 @@ export const getCartProducts = async (req, res) => {
 export const addToCart = async (req, res) => {
     try {
         const {productId} = req.body;
-        const user = req.user;
 
-        const existingItem = user.cartItems.find(item => item.id === productId);
+        const user = req.user;
+        // console.log("product id", productId);
+        
+        const existingItem = user.cartItems.find((item) => item.id === productId);
+        
         if(existingItem){
             existingItem.quantity += 1;
         }else{
