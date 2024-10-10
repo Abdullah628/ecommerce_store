@@ -18,7 +18,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5002;
 
-app.use(express.json()); //alolows us to send json data
+app.use(express.json({ limit: "10mb" })); //alolows us to send json data
 
 app.use(cookieParser());
 
