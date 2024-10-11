@@ -1,6 +1,7 @@
 
 import cloudinary from "../lib/cloudinary.js";
 import Product from "../models/product.modal.js";
+import {redis} from "../lib/redis.js";
 
 
 export const getAllProducts = async (req, res) => {

@@ -38,7 +38,7 @@ export const protectRoute = async (req, res, next) => {
 };
 
 export const adminRoute = async (req, res, next) => {
-    console.log(adminRoute);
+   
     if(req.user && req.user.role === "admin"){
         next();
     }else{

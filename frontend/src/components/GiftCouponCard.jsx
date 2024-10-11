@@ -17,6 +17,7 @@ const GiftCouponCard = () => {
 	const handleApplyCoupon = () => {
 		if (!userInputCode) return;
 		applyCoupon(userInputCode);
+		console.log("cupon code", userInputCode);
 	};
 
 	const handleRemoveCoupon = async () => {
