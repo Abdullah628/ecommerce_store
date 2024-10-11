@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import { useCartStore } from "../stores/useCartStore";
-import { useUserStore } from "../stores/useUserStore";
 import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
 import CartItem from "../components/CartItem";
-// import PeopleAlsoBought from "../components/PeopleAlsoBought";
-// import OrderSummary from "../components/OrderSummary";
+import { useUserStore } from "../stores/useUserStore";
+
+import PeopleAlsoBought from "../components/PeopleAlsoBought";
+import OrderSummary from "../components/OrderSummary";
 import GiftCouponCard from "../components/GiftCouponCard";
 
 const CartPage = () => {
-	const { cart } = useCartStore();
-    const {user} = useUserStore();
-    console.log(user.CartItems);
+	const {  cart } = useCartStore();
+	console.log("cart from cartPage:", cart);
+	const { user } = useUserStore();
+	console.log("user in cartPage", user.cartItems);
+
+
+	
 
 	return (
 		<div className='py-8 md:py-16'>
@@ -27,12 +32,12 @@ const CartPage = () => {
 							<EmptyCartUI />
 						) : (
 							<div className='space-y-6'>
-								{cart?.map((item) => (
+								{cart.map((item) => (
 									<CartItem key={item._id} item={item} />
 								))}
 							</div>
 						)}
-						{/* {cart.length > 0 && <PeopleAlsoBought />} */}
+						{cart.length > 0 && <PeopleAlsoBought />}
 					</motion.div>
 
 					{cart.length > 0 && (
@@ -42,7 +47,7 @@ const CartPage = () => {
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5, delay: 0.4 }}
 						>
-							{/* <OrderSummary /> */}
+							<OrderSummary />
 							<GiftCouponCard />
 						</motion.div>
 					)}

@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "../lib/axios";
 
 const stripePromise = loadStripe(
-	"pk_test_51KZYccCoOZF2UhtOwdXQl3vcizup20zqKqT9hVUIsVzsdBrhqbUI2fE0ZdEVLdZfeHjeyFXtqaNsyCJCmZWnjNZa00PzMAjlcL"
+	"pk_test_51Q5KkELANwso2HdZn3IwGdpKuq5lIkDuucQldRN9q53Nu8U0XIYBWDll5Va5mPgtjzxLEVMsKsc8FN6Dcnn8swvx0091Q4HGU5"
 );
 
 const OrderSummary = () => {
@@ -25,6 +25,8 @@ const OrderSummary = () => {
 		});
 
 		const session = res.data;
+
+		console.log("session", session);
 		const result = await stripe.redirectToCheckout({
 			sessionId: session.id,
 		});
